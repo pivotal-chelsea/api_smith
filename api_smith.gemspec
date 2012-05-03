@@ -4,7 +4,7 @@ require File.expand_path('../lib/api_smith/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "api_smith"
-  s.version     = APISmith::VERSION
+  s.version     = '1'
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Darcy Laycock", "Steve Webb"]
   s.email       = ["sutto@thefrontiergroup.com.au"]

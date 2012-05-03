@@ -1,4 +1,5 @@
 # Monkey patches HTTParty to accept persistent connections.
+require 'httparty/request'
 module HTTParty
   class Request
 

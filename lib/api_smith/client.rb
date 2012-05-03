@@ -39,7 +39,7 @@ module APISmith
       # @param [Hash] options the raw options to be passed to ``#request!``
       # @see #request!
       def get(path, options = {})
-        request! :get, path, options, :query
+        request! :get, path, options, :query, :basic_auth
       end
 
       # Given a path relative to the endpoint (or `/`), will perform a POST request.
@@ -52,7 +52,7 @@ module APISmith
       # @param [Hash] options the raw options to be passed to ``#request!``
       # @see #request!
       def post(path, options = {})
-        request! :post, path, options, :query, :body
+        request! :post, path, options, :query, :body, :basic_auth
       end
 
       # Given a path relative to the endpoint (or `/`), will perform a PUT request.
@@ -65,7 +65,7 @@ module APISmith
       # @param [Hash] options the raw options to be passed to ``#request!``
       # @see #request!
       def put(path, options = {})
-        request! :put, path, options, :query, :body
+        request! :put, path, options, :query, :body, :basic_auth
       end
 
       # Given a path relative to the endpoint (or `/`), will perform a DELETE request.
@@ -78,7 +78,7 @@ module APISmith
       # @param [Hash] options the raw options to be passed to ``#request!``
       # @see #request!
       def delete(path, options = {})
-        request! :delete, path, options, :query
+        request! :delete, path, options, :query, :basic_auth
       end
 
       # Performs a HTTP request using HTTParty, using a set of expanded options built up by the current client.
@@ -196,6 +196,10 @@ module APISmith
         {}
       end
 
+      def base_basic_auth_options
+        {}
+      end
+
       # Per-instance configurable query parameters.
       # @return [Hash] the instance-specific query parameters.
       # @see #add_query_options!
@@ -214,6 +218,10 @@ module APISmith
       # @return [Hash] the instance-specific request options.
       # @see #add_request_options!
       def request_options
+        @request_options ||= {}
+      end
+
+      def basic_auth_options
         @request_options ||= {}
       end
 

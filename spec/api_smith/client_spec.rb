@@ -53,6 +53,27 @@ describe APISmith::Client do
 
   describe 'passing options' do
 
+    it "allows basic auth options" do
+      mock.proxy(client_klass).get('/echo', hash_including(:basic_auth => {:username => 'uname', :password => 'pword'}))
+      client.get('/echo', :extra_basic_auth => {:username => 'uname', :password => 'pword'})
+
+    end
+
+    it 'should allow you to pass basic auth options' do
+      mock.proxy(client_klass).post('/echo', hash_including(:basic_auth => {:username => 'uname', :password => 'pword'}))
+      client.post('/echo', :extra_basic_auth => {:username => 'uname', :password => 'pword'})
+    end
+
+    it 'should allow you to pass basic auth options' do
+      mock.proxy(client_klass).put('/echo', hash_including(:basic_auth => {:username => 'uname', :password => 'pword'}))
+      client.put('/echo', :extra_basic_auth => {:username => 'uname', :password => 'pword'})
+    end
+
+    it 'should allow you to pass basic auth options' do
+      mock.proxy(client_klass).delete('/echo', hash_including(:basic_auth => {:username => 'uname', :password => 'pword'}))
+      client.delete('/echo', :extra_basic_auth => {:username => 'uname', :password => 'pword'})
+    end
+
     it 'should allow you to pass extra query string options' do
       response = client.get('/echo', :extra_query => {:echo => "Hello"})
       response["echo"].should == "Hello"
